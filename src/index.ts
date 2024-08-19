@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
+import router from "./router";
 
 dotenv.config();
 const MONGO_URL: string = process.env.MONGO_URL as string;
@@ -48,3 +49,5 @@ mongoose.connection.on("disconnected", () => {
 mongoose.connection.on("error", (error: Error) => {
   console.error("Mongoose connection error:", error);
 });
+
+app.use("/", router());
